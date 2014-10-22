@@ -8,6 +8,13 @@
 
 import UIKit
 
+class PocoItem {
+    var id: String?
+    var suburb: String?
+    var area: String?
+    var postal: String?
+    var street: String?
+}
 
 class ViewController: UIViewController {
     @IBOutlet weak var findButton: UIButton!
@@ -16,7 +23,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var searchResultTableView: UITableView!
 
     @IBAction func findClick(sender: UIButton) {
-        var request = NSMutableURLRequest(URL: NSURL(string: "http://poco.cloudapp.net/api/locations/7/"))
+        let searchQuery = searchTextField.text
+        var request = NSMutableURLRequest(URL: NSURL(string: "http://poco.cloudapp.net/api/locations/?search=\(searchQuery)"))
         var response:NSURLResponse?
         var error:NSError?
 
@@ -25,6 +33,18 @@ class ViewController: UIViewController {
 
         var datastring = NSString(data: result!, encoding: NSUTF8StringEncoding)
         searchResultLabel.text = datastring
+
+        var jsonError: NSError?
+        let json = NSJSONSerialization.JSONObjectWithData(result!, options: nil, error: &jsonError) as [NSDictionary]
+//        let json = NSJSONSerialization.JSONObjectWithData(result!, options: nil, error: &jsonError) as [AnyObject]
+//        let item0 = json[0] as PocoItem
+//        searchResultLabel.text = item0.area!
+//        for item in json {
+//            searchResultTableView.numberOfRowsInSection(json.count)
+//        }
+        let area = json[0]["area"] as String
+        let suburb = json[0]["suburb"] as String
+        searchResultLabel.text = "Suburb: \(suburb), Area: \(area)"
     }
 
 
