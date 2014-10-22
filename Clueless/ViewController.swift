@@ -16,11 +16,28 @@ class PocoItem {
     var street: String?
 }
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var findButton: UIButton!
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var searchResultLabel: UILabel!
     @IBOutlet weak var searchResultTableView: UITableView!
+
+    var results = [AnyObject]()
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return results.count
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: UITableViewCellStyle.Value2, reuseIdentifier: nil)
+        if results.count >= indexPath.row {
+            let area = results[indexPath.row]["area"] as String
+            let suburb = results[indexPath.row]["suburb"] as String
+            cell.textLabel?.text = "\(area)"
+            cell.detailTextLabel?.text = "\(suburb)"
+        }
+        return cell
+    }
 
     @IBAction func findClick(sender: UIButton) {
         let searchQuery = searchTextField.text
@@ -35,16 +52,8 @@ class ViewController: UIViewController {
         searchResultLabel.text = datastring
 
         var jsonError: NSError?
-        let json = NSJSONSerialization.JSONObjectWithData(result!, options: nil, error: &jsonError) as [NSDictionary]
-//        let json = NSJSONSerialization.JSONObjectWithData(result!, options: nil, error: &jsonError) as [AnyObject]
-//        let item0 = json[0] as PocoItem
-//        searchResultLabel.text = item0.area!
-//        for item in json {
-//            searchResultTableView.numberOfRowsInSection(json.count)
-//        }
-        let area = json[0]["area"] as String
-        let suburb = json[0]["suburb"] as String
-        searchResultLabel.text = "Suburb: \(suburb), Area: \(area)"
+        results = NSJSONSerialization.JSONObjectWithData(result!, options: nil, error: &jsonError) as [AnyObject]
+        searchResultTableView.reloadData()
     }
 
 

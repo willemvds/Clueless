@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,12 +17,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TXb-oy-CPX">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TXb-oy-CPX">
                                 <rect key="frame" x="16" y="71" width="329" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="329" id="0Ed-lp-u1V"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Mv-0w-ZvB">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Mv-0w-ZvB">
                                 <rect key="frame" x="165" y="109" width="30" height="30"/>
                                 <state key="normal" title="Find">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -30,21 +34,45 @@
                                     <action selector="findClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9L6-Uv-fGD"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jEP-gA-PvK">
-                                <rect key="frame" x="36" y="232" width="300" height="300"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="y6h-Nf-XDg">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="y6h-Nf-XDg">
                                 <rect key="frame" x="170" y="147" width="20" height="20"/>
                             </activityIndicatorView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dqe-cw-3oQ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dqe-cw-3oQ">
                                 <rect key="frame" x="16" y="181" width="329" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="MGp-y6-CTO"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jEP-gA-PvK">
+                                <rect key="frame" x="36" y="232" width="300" height="300"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="5dS-RQ-8Mh"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="aYs-du-y4f"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="w1b-7q-g5N"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="TXb-oy-CPX" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="51" id="3pP-lq-Zz6"/>
+                            <constraint firstItem="TXb-oy-CPX" firstAttribute="leading" secondItem="Dqe-cw-3oQ" secondAttribute="leading" id="4xL-MT-Ahi"/>
+                            <constraint firstItem="jEP-gA-PvK" firstAttribute="top" secondItem="Dqe-cw-3oQ" secondAttribute="bottom" constant="30" id="88N-Yf-1Qy"/>
+                            <constraint firstItem="y6h-Nf-XDg" firstAttribute="top" secondItem="2Mv-0w-ZvB" secondAttribute="bottom" constant="8" symbolic="YES" id="8bb-TZ-WRk"/>
+                            <constraint firstItem="y6h-Nf-XDg" firstAttribute="centerX" secondItem="2Mv-0w-ZvB" secondAttribute="centerX" id="91N-Wq-gM9"/>
+                            <constraint firstItem="Dqe-cw-3oQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="B5Q-zr-Hru"/>
+                            <constraint firstItem="jEP-gA-PvK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="BNw-49-d4i"/>
+                            <constraint firstItem="Dqe-cw-3oQ" firstAttribute="top" secondItem="y6h-Nf-XDg" secondAttribute="bottom" constant="14" id="WyY-fP-W0f"/>
+                            <constraint firstItem="Dqe-cw-3oQ" firstAttribute="trailing" secondItem="TXb-oy-CPX" secondAttribute="trailing" id="cw1-dw-93o"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="jEP-gA-PvK" secondAttribute="bottom" constant="68" id="e8z-pv-YCW"/>
+                            <constraint firstItem="2Mv-0w-ZvB" firstAttribute="top" secondItem="TXb-oy-CPX" secondAttribute="bottom" constant="8" symbolic="YES" id="lZr-9d-Tdq"/>
+                            <constraint firstItem="Dqe-cw-3oQ" firstAttribute="centerX" secondItem="y6h-Nf-XDg" secondAttribute="centerX" id="vMm-0v-vNB"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="findButton" destination="2Mv-0w-ZvB" id="TPb-nX-BDr"/>
