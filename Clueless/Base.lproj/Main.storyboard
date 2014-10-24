@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,53 +17,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TXb-oy-CPX">
-                                <rect key="frame" x="30" y="71" width="300" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TXb-oy-CPX">
+                                <rect key="frame" x="30" y="76" width="300" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="329" id="0Ed-lp-u1V"/>
+                                    <constraint firstAttribute="width" constant="300" id="ubO-m3-QJf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Mv-0w-ZvB">
-                                <rect key="frame" x="165" y="109" width="30" height="30"/>
-                                <state key="normal" title="Find">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
                                 <connections>
-                                    <action selector="findClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9L6-Uv-fGD"/>
+                                    <action selector="searchTextEditEnd:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="8GT-G9-hxG"/>
+                                    <action selector="searchTextEditingChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="s6N-6d-qV9"/>
+                                    <action selector="searchTextValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="WIx-Yo-le9"/>
                                 </connections>
-                            </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jEP-gA-PvK">
-                                <rect key="frame" x="30" y="157" width="300" height="374"/>
+                            </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jEP-gA-PvK">
+                                <rect key="frame" x="30" y="147" width="300" height="384"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="5dS-RQ-8Mh"/>
-                                </constraints>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="aYs-du-y4f"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="w1b-7q-g5N"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="y6h-Nf-XDg">
-                                <rect key="frame" x="290" y="114" width="20" height="20"/>
+                            <activityIndicatorView opaque="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="y6h-Nf-XDg">
+                                <rect key="frame" x="175" y="119" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="TXb-oy-CPX" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="51" id="3pP-lq-Zz6"/>
-                            <constraint firstItem="y6h-Nf-XDg" firstAttribute="top" secondItem="2Mv-0w-ZvB" secondAttribute="bottom" constant="8" symbolic="YES" id="8bb-TZ-WRk"/>
-                            <constraint firstItem="y6h-Nf-XDg" firstAttribute="centerX" secondItem="2Mv-0w-ZvB" secondAttribute="centerX" id="91N-Wq-gM9"/>
-                            <constraint firstItem="2Mv-0w-ZvB" firstAttribute="centerX" secondItem="TXb-oy-CPX" secondAttribute="centerX" id="BBd-Qd-nYf"/>
-                            <constraint firstItem="jEP-gA-PvK" firstAttribute="top" secondItem="2Mv-0w-ZvB" secondAttribute="bottom" constant="18" id="GYh-SW-4RW"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="jEP-gA-PvK" secondAttribute="bottom" constant="68" id="e8z-pv-YCW"/>
-                            <constraint firstItem="jEP-gA-PvK" firstAttribute="leading" secondItem="TXb-oy-CPX" secondAttribute="leading" id="fGd-he-FL9"/>
-                            <constraint firstItem="2Mv-0w-ZvB" firstAttribute="top" secondItem="TXb-oy-CPX" secondAttribute="bottom" constant="8" symbolic="YES" id="lZr-9d-Tdq"/>
-                            <constraint firstItem="y6h-Nf-XDg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wq4-2a-XCB"/>
+                            <constraint firstItem="TXb-oy-CPX" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="56" id="7kN-93-ci6"/>
+                            <constraint firstItem="TXb-oy-CPX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="14" id="7rg-l7-620"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="jEP-gA-PvK" secondAttribute="bottom" constant="69" id="J8U-gf-0bZ"/>
+                            <constraint firstItem="y6h-Nf-XDg" firstAttribute="top" secondItem="TXb-oy-CPX" secondAttribute="bottom" constant="13" id="JQK-zj-JMT"/>
+                            <constraint firstItem="TXb-oy-CPX" firstAttribute="trailing" secondItem="jEP-gA-PvK" secondAttribute="trailing" id="KAL-lJ-9mz"/>
+                            <constraint firstItem="y6h-Nf-XDg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="175" id="Q0E-yT-VSB"/>
+                            <constraint firstItem="TXb-oy-CPX" firstAttribute="leading" secondItem="jEP-gA-PvK" secondAttribute="leading" id="m1x-Eg-bQU"/>
+                            <constraint firstItem="jEP-gA-PvK" firstAttribute="top" secondItem="y6h-Nf-XDg" secondAttribute="bottom" constant="8" symbolic="YES" id="v57-v5-bHb"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="findButton" destination="2Mv-0w-ZvB" id="TPb-nX-BDr"/>
                         <outlet property="loadingIndicator" destination="y6h-Nf-XDg" id="oWT-0g-6Cj"/>
                         <outlet property="searchResultTableView" destination="jEP-gA-PvK" id="NDm-oY-gZC"/>
                         <outlet property="searchTextField" destination="TXb-oy-CPX" id="XCV-ge-vHV"/>

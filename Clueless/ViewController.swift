@@ -18,6 +18,27 @@ class ViewController: UIViewController, UITableViewDataSource {
 
     var results = [AnyObject]()
 
+    func doSearch() {
+        if searchTextField.text.utf16Count >= 3 {
+            loadingIndicator.alpha = 1
+            loadingIndicator.startAnimating()
+            let searchQuery = searchTextField.text
+            var request = NSMutableURLRequest(URL: NSURL(string: "http://poco.cloudapp.net/api/locations/?search=\(searchQuery)"))
+            var response:NSURLResponse?
+            var error:NSError?
+            let queue:NSOperationQueue = NSOperationQueue()
+            NSURLConnection.sendAsynchronousRequest(request, queue: queue, completionHandler:{ (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
+                if error == nil {
+                    var jsonError: NSError?
+                    self.results = NSJSONSerialization.JSONObjectWithData(data!, options: nil, error: &jsonError) as [AnyObject]
+                    self.searchResultTableView.reloadData()
+                    self.loadingIndicator.alpha = 0
+                    self.loadingIndicator.stopAnimating()
+                }
+            })
+        }
+    }
+
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return results.count
     }
@@ -34,22 +55,12 @@ class ViewController: UIViewController, UITableViewDataSource {
     }
 
     @IBAction func findClick(sender: UIButton) {
-        loadingIndicator.alpha = 1
-        loadingIndicator.startAnimating()
-        let searchQuery = searchTextField.text
-        var request = NSMutableURLRequest(URL: NSURL(string: "http://poco.cloudapp.net/api/locations/?search=\(searchQuery)"))
-        var response:NSURLResponse?
-        var error:NSError?
-        let queue:NSOperationQueue = NSOperationQueue()
-        NSURLConnection.sendAsynchronousRequest(request, queue: queue, completionHandler:{ (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
-            var jsonError: NSError?
-            self.results = NSJSONSerialization.JSONObjectWithData(data!, options: nil, error: &jsonError) as [AnyObject]
-            self.searchResultTableView.reloadData()
-            self.loadingIndicator.alpha = 0
-            self.loadingIndicator.stopAnimating()
-        })
+        doSearch()
     }
 
+    @IBAction func searchTextEditingChanged(sender: UITextField) {
+        doSearch()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
