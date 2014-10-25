@@ -1,58 +1,46 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <deployment version="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Clueless" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TXb-oy-CPX">
-                                <rect key="frame" x="30" y="76" width="300" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="ubO-m3-QJf"/>
-                                </constraints>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" id="y6h-Nf-XDg">
+                                <rect key="frame" x="275" y="141" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sa.png" id="xO3-ja-B0e">
+                                <rect key="frame" x="16" y="7" width="142" height="126"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search Text" minimumFontSize="17" id="TXb-oy-CPX" propertyAccessControl="none">
+                                <rect key="frame" x="16" y="136" width="288" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="searchTextEditEnd:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="8GT-G9-hxG"/>
                                     <action selector="searchTextEditingChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="s6N-6d-qV9"/>
-                                    <action selector="searchTextValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="WIx-Yo-le9"/>
                                 </connections>
                             </textField>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jEP-gA-PvK">
-                                <rect key="frame" x="30" y="147" width="300" height="384"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="jEP-gA-PvK">
+                                <rect key="frame" x="16" y="179" width="288" height="369"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="aYs-du-y4f"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="w1b-7q-g5N"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView opaque="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="y6h-Nf-XDg">
-                                <rect key="frame" x="175" y="119" width="20" height="20"/>
-                            </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="TXb-oy-CPX" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="56" id="7kN-93-ci6"/>
-                            <constraint firstItem="TXb-oy-CPX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="14" id="7rg-l7-620"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="jEP-gA-PvK" secondAttribute="bottom" constant="69" id="J8U-gf-0bZ"/>
-                            <constraint firstItem="y6h-Nf-XDg" firstAttribute="top" secondItem="TXb-oy-CPX" secondAttribute="bottom" constant="13" id="JQK-zj-JMT"/>
-                            <constraint firstItem="TXb-oy-CPX" firstAttribute="trailing" secondItem="jEP-gA-PvK" secondAttribute="trailing" id="KAL-lJ-9mz"/>
-                            <constraint firstItem="y6h-Nf-XDg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="175" id="Q0E-yT-VSB"/>
-                            <constraint firstItem="TXb-oy-CPX" firstAttribute="leading" secondItem="jEP-gA-PvK" secondAttribute="leading" id="m1x-Eg-bQU"/>
-                            <constraint firstItem="jEP-gA-PvK" firstAttribute="top" secondItem="y6h-Nf-XDg" secondAttribute="bottom" constant="8" symbolic="YES" id="v57-v5-bHb"/>
-                        </constraints>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
                         <outlet property="loadingIndicator" destination="y6h-Nf-XDg" id="oWT-0g-6Cj"/>
@@ -62,6 +50,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-111" y="-13"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="sa.png" width="144" height="104"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

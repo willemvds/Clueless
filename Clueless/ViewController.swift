@@ -20,21 +20,21 @@ class ViewController: UIViewController, UITableViewDataSource {
 
     func doSearch() {
         if searchTextField.text.utf16Count >= 3 {
-            loadingIndicator.alpha = 1
             loadingIndicator.startAnimating()
             let searchQuery = searchTextField.text
-            var request = NSMutableURLRequest(URL: NSURL(string: "http://poco.cloudapp.net/api/locations/?search=\(searchQuery)"))
+            var request = NSMutableURLRequest(URL: NSURL(string: "http://poco.cloudapp.net/api/locations/?search=\(searchQuery)")!)
             var response:NSURLResponse?
             var error:NSError?
             let queue:NSOperationQueue = NSOperationQueue()
-            NSURLConnection.sendAsynchronousRequest(request, queue: queue, completionHandler:{ (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
-                if error == nil {
-                    var jsonError: NSError?
-                    self.results = NSJSONSerialization.JSONObjectWithData(data!, options: nil, error: &jsonError) as [AnyObject]
-                    self.searchResultTableView.reloadData()
-                    self.loadingIndicator.alpha = 0
-                    self.loadingIndicator.stopAnimating()
-                }
+            dispatch_async(dispatch_get_main_queue(), {
+                NSURLConnection.sendAsynchronousRequest(request, queue: queue, completionHandler:{ (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
+                    if error == nil {
+                        var jsonError: NSError?
+                        self.results = NSJSONSerialization.JSONObjectWithData(data!, options: nil, error: &jsonError) as [AnyObject]
+                        self.searchResultTableView.reloadData()
+                        self.loadingIndicator.stopAnimating()
+                    }
+                })
             })
         }
     }
@@ -44,11 +44,11 @@ class ViewController: UIViewController, UITableViewDataSource {
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: nil)
+        let cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "cell\(indexPath.row)")
         if results.count >= indexPath.row {
             let area = results[indexPath.row]["area"] as String
             let suburb = results[indexPath.row]["suburb"] as String
-            cell.textLabel?.text = "\(suburb)"
+            cell.textLabel.text = "\(suburb)"
             cell.detailTextLabel?.text = "\(area)"
         }
         return cell

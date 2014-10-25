@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A9301BED19FC076B0013417B /* sa.png in Resources */ = {isa = PBXBuildFile; fileRef = A9301BEC19FC076B0013417B /* sa.png */; };
 		A932CCDB19F6D202009B44C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A932CCDA19F6D202009B44C2 /* AppDelegate.swift */; };
 		A932CCDD19F6D202009B44C2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A932CCDC19F6D202009B44C2 /* ViewController.swift */; };
 		A932CCE019F6D202009B44C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A932CCDE19F6D202009B44C2 /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A9301BEC19FC076B0013417B /* sa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sa.png; path = ../../../Pictures/sa.png; sourceTree = "<group>"; };
 		A932CCD519F6D202009B44C2 /* Clueless.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clueless.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A932CCD919F6D202009B44C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A932CCDA19F6D202009B44C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 		A932CCD719F6D202009B44C2 /* Clueless */ = {
 			isa = PBXGroup;
 			children = (
+				A9301BEC19FC076B0013417B /* sa.png */,
 				A932CCDA19F6D202009B44C2 /* AppDelegate.swift */,
 				A932CCDC19F6D202009B44C2 /* ViewController.swift */,
 				A932CCDE19F6D202009B44C2 /* Main.storyboard */,
@@ -193,6 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A932CCE019F6D202009B44C2 /* Main.storyboard in Resources */,
+				A9301BED19FC076B0013417B /* sa.png in Resources */,
 				A932CCE519F6D202009B44C2 /* LaunchScreen.xib in Resources */,
 				A932CCE219F6D202009B44C2 /* Images.xcassets in Resources */,
 			);
@@ -407,6 +411,7 @@
 				A932CCF619F6D202009B44C2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A932CCF719F6D202009B44C2 /* Build configuration list for PBXNativeTarget "CluelessTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +420,7 @@
 				A932CCF919F6D202009B44C2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
