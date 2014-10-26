@@ -17,25 +17,27 @@ class ViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
 
     var results = [AnyObject]()
+    let queue:NSOperationQueue = NSOperationQueue()
 
     func doSearch() {
         if searchTextField.text.utf16Count >= 3 {
+            results = [AnyObject]()
+            self.searchResultTableView.reloadData()
             loadingIndicator.startAnimating()
             let searchQuery = searchTextField.text
             var request = NSMutableURLRequest(URL: NSURL(string: "http://poco.cloudapp.net/api/locations/?search=\(searchQuery)")!)
             var response:NSURLResponse?
             var error:NSError?
-            let queue:NSOperationQueue = NSOperationQueue()
-            dispatch_async(dispatch_get_main_queue(), {
+            //dispatch_async(dispatch_get_main_queue(), {
                 NSURLConnection.sendAsynchronousRequest(request, queue: queue, completionHandler:{ (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
                     if error == nil {
                         var jsonError: NSError?
                         self.results = NSJSONSerialization.JSONObjectWithData(data!, options: nil, error: &jsonError) as [AnyObject]
                         self.searchResultTableView.reloadData()
-                        self.loadingIndicator.stopAnimating()
                     }
+                    self.loadingIndicator.stopAnimating()
                 })
-            })
+            //})
         }
     }
 
